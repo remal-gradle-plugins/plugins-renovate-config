@@ -17,8 +17,18 @@
   "java": {
     "packageRules": [
       {
-        "packagePatterns": ["^name\\.remal\\.gradle-plugins[.:]"],
+        "packagePatterns": [
+          "^name\\.remal\\.gradle-plugins[.:]"
+        ],
         "stabilityDays": 0
+      },
+      {
+        "packagePatterns": [
+          "^name\\.remal\\.gradle-plugins\\.toolkit:"
+        ],
+        "addLabels": [
+          "remal-gradle-plugins-toolkit"
+        ]
       }
     ]
   }
