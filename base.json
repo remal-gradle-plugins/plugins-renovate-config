@@ -18,17 +18,24 @@
     "packageRules": [
       {
         "packagePatterns": [
-          "^name\\.remal\\.gradle-plugins[.:]"
-        ],
-        "stabilityDays": 0
-      },
-      {
-        "packagePatterns": [
           "^name\\.remal\\.gradle-plugins\\.toolkit:"
         ],
         "addLabels": [
           "remal-gradle-plugins-toolkit"
         ]
+      },
+      {
+        "packagePatterns": [
+          "^org\\.mockito[.:]"
+        ],
+        "matchCurrentVersion": "<5",
+        "allowedVersions": "<5"
+      },
+      {
+        "packagePatterns": [
+          "^name\\.remal\\.gradle-plugins[.:]"
+        ],
+        "stabilityDays": 0
       }
     ]
   }
