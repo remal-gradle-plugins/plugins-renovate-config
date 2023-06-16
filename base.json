@@ -26,13 +26,6 @@
       },
       {
         "packagePatterns": [
-          "^org\\.mockito[.:]"
-        ],
-        "matchCurrentVersion": "<5",
-        "allowedVersions": "<5"
-      },
-      {
-        "packagePatterns": [
           "^name\\.remal\\.gradle-plugins[.:]"
         ],
         "stabilityDays": 0
