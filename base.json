@@ -17,7 +17,7 @@
   "packageRules": [
     {
       "matchCategories": ["java"],
-      "packagePatterns": [
+      "matchPackagePatterns": [
         "^name\\.remal\\.gradle-plugins\\.toolkit:"
       ],
       "addLabels": [
@@ -26,7 +26,7 @@
     },
     {
       "matchCategories": ["java"],
-      "packagePatterns": [
+      "matchPackagePatterns": [
         "^name\\.remal\\.gradle-plugins[.:]"
       ],
       "stabilityDays": 0
