@@ -14,22 +14,22 @@
     "rebaseWhen": "behind-base-branch"
   },
 
-  "java": {
-    "packageRules": [
-      {
-        "packagePatterns": [
-          "^name\\.remal\\.gradle-plugins\\.toolkit:"
-        ],
-        "addLabels": [
-          "remal-gradle-plugins-toolkit"
-        ]
-      },
-      {
-        "packagePatterns": [
-          "^name\\.remal\\.gradle-plugins[.:]"
-        ],
-        "stabilityDays": 0
-      }
-    ]
-  }
+  "packageRules": [
+    {
+      "matchCategories": ["java"],
+      "packagePatterns": [
+        "^name\\.remal\\.gradle-plugins\\.toolkit:"
+      ],
+      "addLabels": [
+        "remal-gradle-plugins-toolkit"
+      ]
+    },
+    {
+      "matchCategories": ["java"],
+      "packagePatterns": [
+        "^name\\.remal\\.gradle-plugins[.:]"
+      ],
+      "stabilityDays": 0
+    }
+  ]
 }
