@@ -31,5 +31,10 @@
       ],
       "stabilityDays": 0
     }
+  ],
+
+  "hostRules": [
+    "matchHost": "https://maven.pkg.github.com/remal-gradle-api/packages/",
+    "enabled": false
   ]
 }
