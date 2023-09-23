@@ -34,7 +34,9 @@
   ],
 
   "hostRules": [
-    "matchHost": "https://maven.pkg.github.com/remal-gradle-api/packages/",
-    "enabled": false
+    {
+      "matchHost": "https://maven.pkg.github.com/remal-gradle-api/packages/",
+      "enabled": false
+    }
   ]
 }
