@@ -5,7 +5,6 @@
 
   "assigneesFromCodeOwners": false,
   "reviewersFromCodeOwners": false,
-  "osvVulnerabilityAlerts": false,
 
   "git-submodules": {
     "enabled": false
