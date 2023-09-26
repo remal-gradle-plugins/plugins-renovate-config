@@ -1,7 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": ["Base settings for Gradle plugins"],
-  "extends": ["github>remal/renovate-config:global"],
+  "extends": [
+    "github>remal/renovate-config:global",
+    "github>remal/renovate-config:java-8",
+  ],
 
   "assigneesFromCodeOwners": false,
   "reviewersFromCodeOwners": false,
