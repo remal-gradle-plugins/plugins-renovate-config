@@ -1,9 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": ["Base settings for Gradle plugins"],
+  "description": [
+    "Base settings for Gradle plugins"
+  ],
   "extends": [
     "github>remal/renovate-config:global",
-    "github>remal/renovate-config:java-8",
+    "github>remal/renovate-config:java-8"
   ],
 
   "assigneesFromCodeOwners": false,
@@ -19,7 +21,9 @@
 
   "packageRules": [
     {
-      "matchCategories": ["java"],
+      "matchCategories": [
+        "java"
+      ],
       "matchPackagePatterns": [
         "^name\\.remal\\.gradle-plugins\\.toolkit:"
       ],
@@ -28,7 +32,9 @@
       ]
     },
     {
-      "matchCategories": ["java"],
+      "matchCategories": [
+        "java"
+      ],
       "matchPackagePatterns": [
         "^name\\.remal\\.gradle-plugins[.:]"
       ],
