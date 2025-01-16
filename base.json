@@ -42,6 +42,19 @@
     }
   ],
 
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "\\.properties$"
+      ],
+      "matchStrings": [
+        "#[ \\t]*renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?[ \\t]*[\\r\\n]+\\S+?[ \\t]*=[ \\t]*(?<currentValue>\\S+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}"
+    }
+  ]
+
   "hostRules": [
     {
       "matchHost": "https://maven.pkg.github.com/remal-gradle-api/packages/",
