@@ -4,8 +4,7 @@
     "Base settings for Gradle plugins"
   ],
   "extends": [
-    "github>remal/renovate-config:global",
-    "github>remal/renovate-config:java-8"
+    "github>remal/renovate-config:global"
   ],
 
   "assigneesFromCodeOwners": false,
