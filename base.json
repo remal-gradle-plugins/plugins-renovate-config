@@ -38,6 +38,7 @@
       "matchPackagePatterns": [
         "^name\\.remal\\.gradle-plugins[.:]"
       ],
+      "ignoreUnstable": false,
       "stabilityDays": 0
     }
   ],
