@@ -1,0 +1,101 @@
+name: build
+
+on:
+  push:
+    branches:
+    - main
+  pull_request: { }
+  workflow_dispatch: { }
+
+permissions:
+  contents: read
+
+env:
+  # renovate: datasource=npm depName=renovate versioning=semver
+  RENOVATE_VERSION: 43.214.5
+  LOG_LEVEL: info
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    if: ${{
+      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/'))
+      || (github.event_name == 'push' && !startsWith(github.event.head_commit.message, '[push-back]'))
+      || github.event_name != 'push'
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: build-${{github.ref}}
+      cancel-in-progress: true
+    env:
+      GITHUB_COM_TOKEN: ${{secrets.PUSH_BACK_TOKEN}}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+      with:
+        token: ${{secrets.PUSH_BACK_TOKEN}}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: lts/*
+        cache: npm
+        cache-dependency-path: .github/workflows/build.yml
+
+    - name: Create configs file
+      id: configsFile
+      run: |
+        file=$(mktemp -q)
+        echo "path=$file" >> "$GITHUB_OUTPUT"
+    - name: Find Renovate config files
+      uses: actions/github-script@v9
+      with:
+        result-encoding: json
+        script: |
+          const path = require('path')
+          const fs = require('fs')
+          const globber = await glob.create([
+            '**/*.json',
+            '**/*.json5',
+            '**/*.yml',
+            '**/*.yaml',
+            '!.github/**',
+            '!.*/**',
+          ].join('\n'))
+          let files = await globber.glob()
+          files = files
+            .map(file =>
+              path.relative(process.cwd(), file)
+            )
+            .sort()
+          if (files.length) {
+            core.info("Found config files:")
+            files.forEach(file => core.info(`  ${file}`))
+          } else {
+            core.warn("Not config files found")
+          }
+          fs.writeFileSync('${{steps.configsFile.outputs.path}}', files.join('\n'), 'utf8')
+
+    - name: Validate and migrate config
+      run: |
+        for configFile in `cat "${{steps.configsFile.outputs.path}}"`; do
+          echo "::group::Validating $configFile"
+          logFile=$(mktemp -q)
+          npx --yes --loglevel=error --package "renovate@${{env.RENOVATE_VERSION}}" -- renovate-config-validator --strict "$configFile" 2>&1 | tee "$logFile" \
+            || ( \
+              node .github/workflows/build-process-log.js "$configFile" "$logFile" \
+              && echo "Revalidating $configFile" \
+              && npx --yes --loglevel=error --package "renovate@${{env.RENOVATE_VERSION}}" -- renovate-config-validator --strict "$configFile"
+            )
+          echo "::endgroup::"
+        done
+
+    - name: Push back migrated configs
+      if: ${{github.ref == 'refs/heads/main'}}
+      uses: remal-github-actions/push-back@v2
+      with:
+        message: '[push-back] Push-back migrated configs'

@@ -1,4 +1,19 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  enabled: false,
+  extends: [
+    "github>remal/renovate-config:global"
+  ],
+
+  packageRules: [
+    {
+      matchDepNames: [
+        'renovate'
+      ],
+      schedule: [
+        "after 6pm on sunday"
+      ],
+      minimumReleaseAge: '2 weeks',
+      internalChecksFilter: 'strict',
+    },
+  ],
 }
