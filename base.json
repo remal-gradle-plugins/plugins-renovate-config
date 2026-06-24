@@ -7,47 +7,42 @@
     "github>remal/renovate-config:global",
     "github>remal/renovate-config:java-11"
   ],
-
   "assigneesFromCodeOwners": false,
   "reviewersFromCodeOwners": false,
-
   "git-submodules": {
     "enabled": false
   },
-
   "gradle-wrapper": {
     "rebaseWhen": "behind-base-branch"
   },
-
   "packageRules": [
     {
       "matchCategories": [
         "java"
       ],
-      "matchPackagePatterns": [
-        "^name\\.remal\\.gradle-plugins\\.toolkit:"
-      ],
       "addLabels": [
         "remal-gradle-plugins-toolkit"
+      ],
+      "matchPackageNames": [
+        "/^name\\.remal\\.gradle-plugins\\.toolkit:/"
       ]
     },
     {
       "matchCategories": [
         "java"
       ],
-      "matchPackagePatterns": [
-        "^name\\.remal\\.gradle-plugins[.:]"
-      ],
       "ignoreUnstable": false,
-      "stabilityDays": 0
+      "minimumReleaseAge": null,
+      "matchPackageNames": [
+        "/^name\\.remal\\.gradle-plugins[.:]/"
+      ]
     }
   ],
-
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.properties$"
+      "managerFilePatterns": [
+        "/\\.properties$/"
       ],
       "matchStrings": [
         "#[ \\t]*renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)( versioning=(?<versioning>.+?))?[ \\t]*[\\r\\n]+\\S+?[ \\t]*=[ \\t]*(?<currentValue>\\S+)"
@@ -55,7 +50,6 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}"
     }
   ],
-
   "hostRules": [
     {
       "matchHost": "https://maven.pkg.github.com/remal-gradle-api/packages/",
