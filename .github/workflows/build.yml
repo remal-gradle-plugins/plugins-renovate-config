@@ -12,7 +12,7 @@ permissions:
 
 env:
   # renovate: datasource=npm depName=renovate versioning=semver
-  RENOVATE_VERSION: 44.164.6
+  RENOVATE_VERSION: 44.164.7
   LOG_LEVEL: info
 
 defaults:
