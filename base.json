@@ -44,7 +44,7 @@
       "matchPackageNames": [
         "io.github.classgraph:classgraph"
       ],
-      "allowedVersions": "<5.0.0",
+      "allowedVersions": "<5",
       "description": [
         "classgraph 5.x+ requires JDK 17+; these projects support Java 11"
       ]
