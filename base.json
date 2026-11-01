@@ -36,6 +36,18 @@
       "matchPackageNames": [
         "/^name\\.remal\\.gradle-plugins[.:]/"
       ]
+    },
+    {
+      "matchCategories": [
+        "java"
+      ],
+      "matchPackageNames": [
+        "io.github.classgraph:classgraph"
+      ],
+      "allowedVersions": "<5.0.0",
+      "description": [
+        "classgraph 5.x+ requires JDK 17+; these projects support Java 11"
+      ]
     }
   ],
   "customManagers": [
